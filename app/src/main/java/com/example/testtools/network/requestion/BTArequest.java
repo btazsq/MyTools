@@ -81,7 +81,7 @@ public final class BTArequest{//BTA是我的网名(
 
     protected BTArequest(){ }
 
-    public BTArequest getOnlyEmbody(){return onlyEmbody;}
+    public static BTArequest getOnlyEmbody(){return onlyEmbody;}
 
     private void callBackByHandler(OnRequestion onRequestion){
         Message meg = new Message();
