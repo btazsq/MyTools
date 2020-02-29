@@ -3,4 +3,5 @@
 ```
 app\src\main\java\com\example\testtools\network\requestion内   
 ```
-** 吗 **
+#### 目前有4个类，2个接口 ####
+尝试采用"Builder模式"和"单例模式"
