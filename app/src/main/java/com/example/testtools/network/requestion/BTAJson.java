@@ -100,7 +100,7 @@ public class BTAJson {
     }
 
     public String toString(){
-        return this.json;
+        return  super.toString() + "--" + this.json;
     }
 
 }

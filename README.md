@@ -40,4 +40,4 @@ postData是提交数据；getStringReturn是接受数据
    
 ##### 更新BTAJson类 #####  
 使用两个静态方法，分别解析出BTAJson对象和List<BTAJson>对象   
-BTAJson对象公开的只有getString(String key):String和toString():void两个方法   
+BTAJson对象公开的只有getString(String key):String和toString():String两个方法   
