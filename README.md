@@ -36,4 +36,8 @@ StringReturn类封装了网络请求的数据
 setData则是post的数据   
 postData是提交数据；getStringReturn是接受数据   
 
-另外，BTArequest类有个submitTask方法，可以把需要另开线程执行的任务和回调的任务传进去执行   
+另外，BTArequest类有个submitTask方法，可以把需要另开线程执行的任务和回调的任务传进去执行  
+   
+##### 更新BTAJson类 #####  
+使用两个静态方法，分别解析出BTAJson对象和List<BTAJson>对象   
+BTAJson对象公开的只有getString(String key):String和toString():void两个方法   
