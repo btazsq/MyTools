@@ -8,6 +8,15 @@ public class StringReturn{
 
     protected OnRequestion requestion = null;
 
+    public OnRequestion getRequestion() {
+        return requestion;
+    }
+
+    public StringReturn setRequestion(OnRequestion requestion) {
+        this.requestion = requestion;
+        return this;
+    }
+
     public StringReturn(){ }
 
     public StringReturn(OnRequestion onRequestion){

@@ -4,8 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.testtools.network.image.MyImage;
 import com.example.testtools.network.requestion.*;
 
 public class MainActivity extends AppCompatActivity {
@@ -18,19 +21,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //测试
-        stringReturn = new StringReturn(()->{
-            Toast.makeText(MainActivity.this,stringReturn.getBack(),Toast.LENGTH_LONG).show();
-            Log.d("******", "onCreate: " + stringReturn.getBack());
-        });
-        new RequestionBuilder()
-                .build()
-                .setcType(BTArequest.TYPE_FORM)
-                .fromWeb("http://bihu.jay86.com/login.php")
-                .setWhileTime(50L)
-                .setRequestMethod("POST")
-                .postData(new StringReturn()
-                        .setData("username=zsq5&password=zsqzsq"))
-                .getStringReturn(stringReturn)
-                .disconnect();
+        MyImage.with(this)
+                .setPreView(R.mipmap.ic_launcher)
+                .load("https://s2.ax1x.com/2020/02/08/1Wnh36.png")
+                .into(findViewById(R.id.image_test))
+                .addBuffer();
+        //MyImage.getBitmapBuffer().get(0);
+        MyImage.delBitmapBuffer();
     }
 }

@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
@@ -37,7 +36,7 @@ public final class BTArequest{//BTA是我的网名(
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
-            if (msg.what == SGIN_CALLBACK)
+            if (msg.what == SGIN_CALLBACK && (OnRequestion)msg.obj!=null)
             ((OnRequestion)msg.obj).onReCallBack();
         }
     };
@@ -54,6 +53,12 @@ public final class BTArequest{//BTA是我的网名(
         connection.setInstanceFollowRedirects(true);
         connection.setRequestProperty("Content-Type",cType);
         return connection;
+    }
+
+    //自由提交任务
+    public Future submitTask(final OnRequestion.DefineAction action){
+        Future future = submitTask(action,null);
+        return future;
     }
 
     //自由提交任务
@@ -83,7 +88,7 @@ public final class BTArequest{//BTA是我的网名(
 
     public static BTArequest getOnlyEmbody(){return onlyEmbody;}
 
-    private void callBackByHandler(OnRequestion onRequestion){
+    public void callBackByHandler(OnRequestion onRequestion){
         Message meg = new Message();
         meg.what = SGIN_CALLBACK;
         meg.obj = onRequestion;
@@ -97,7 +102,7 @@ public final class BTArequest{//BTA是我的网名(
 
         private HttpURLConnection thisConnection = null;
 
-        private long whileTime = 100L;//POST时，get数据的循环等待时间
+        private long whileTime = 50L;//POST时，get数据的循环等待时间
 
         private String requestMethod = "GET";
 
@@ -134,7 +139,7 @@ public final class BTArequest{//BTA是我的网名(
 
         public BTAConnection postData(StringReturn stringReturn){
             isPost = true;
-            BTArequest.this.submitTask(()->{
+            getOnlyEmbody().submitTask(()->{
                 try{
                     thisConnection.setRequestMethod("POST");
                     thisConnection.connect();
@@ -160,7 +165,7 @@ public final class BTArequest{//BTA是我的网名(
         }
 
         public BTAConnection getStringReturn(StringReturn stringReturn){
-            BTArequest.this.submitTask(()->{
+            getOnlyEmbody().submitTask(()->{
                 if (this.thisConnection != null){
                     try {
                         while (isPost){
