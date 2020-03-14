@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
                 .load("https://s2.ax1x.com/2020/02/08/1Wnh36.png")
                 .into(findViewById(R.id.image_test))
                 .addBuffer();
-        //MyImage.getBitmapBuffer().get(0);
+        MyImage.getBitmapBuffer(0);
         MyImage.delBitmapBuffer();
     }
 }

@@ -13,10 +13,11 @@ import java.util.List;
 
 public class MyImage {
 
-    private static List<Bitmap> bitmapList = new ArrayList<Bitmap>();
+    protected static List<Bitmap> bitmapList = new ArrayList<Bitmap>();
 
-    public static List<Bitmap> getBitmapBuffer(){
-        return  bitmapList;
+    public static Bitmap getBitmapBuffer(int num){
+        if (bitmapList.size() <= num)return null;
+        return  bitmapList.get(num);
     }
 
     public static void delBitmapBuffer(){

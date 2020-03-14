@@ -71,6 +71,14 @@ public class MyImageTool {
         return this;
     }
 
+    public MyImageTool load(Bitmap bitmap){
+        isDoingTask = true;
+        MyThreadTask.submitTask(new MyThreadTask(()->{
+            this.bitmap = bitmap;
+        }));
+        return this;
+    }
+
     public MyImageTool into(ImageView imageView){
         if (preview != NULL) {
             Message mes = new Message();
@@ -92,7 +100,7 @@ public class MyImageTool {
     public MyImageTool addBuffer(){
         MyThreadTask.submitTask(new MyThreadTask(()->{
             if (bitmap != null)
-                MyImage.getBitmapBuffer().add(bitmap);
+                MyImage.bitmapList.add(bitmap);
         }));
         return this;
     }

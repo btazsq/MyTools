@@ -41,3 +41,25 @@ postData是提交数据；getStringReturn是接受数据
 ##### 更新BTAJson类 #####  
 使用两个静态方法，分别解析出BTAJson对象和List<BTAJson>对象   
 BTAJson对象公开的只有getString(String key):String和toString():String两个方法   
+   
+## 网络图片工具类   
+```
+实际上可以算是残次品，只有加载网络图片给ImageView更新视图有用点儿   
+其它的不知道这么搞了   
+```
+#### 示例如下 
+```
+//测试
+        MyImage.with(this)
+                .setPreView(R.mipmap.ic_launcher)
+                .load("https://s2.ax1x.com/2020/02/08/1Wnh36.png")
+                .into(findViewById(R.id.image_test))
+                .addBuffer();
+        MyImage.getBitmapBuffer(0);
+        MyImage.delBitmapBuffer();
+```   
+.with(this)完全没有用到，只是模拟gilde的，不明白他的模式   
+.setPreView(R.mipmap.ic_launcher)设置占位图片   
+.load("https://s2.ax1x.com/2020/02/08/1Wnh36.png")加载网络图片，也可以传bitmap进去   
+.addBuffer()添加缓存（把bitmap存到一个List中，或许可以存到HasMap中？）   
+MyImage.getBitmapBuffer(0);把List封装了一层而已。。。   
