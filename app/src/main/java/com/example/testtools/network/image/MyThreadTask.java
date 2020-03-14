@@ -9,9 +9,9 @@ import java.util.Queue;
 
 public class MyThreadTask {
 
-    private static boolean isDoingTask = false;
+    private boolean isDoingTask = false;
 
-    public static Queue<MyThreadTask> taskQueue = new LinkedList<MyThreadTask>();
+    public Queue<MyThreadTask> taskQueue = new LinkedList<MyThreadTask>();
 
     private OnRequestion.DefineAction defineAction;
 
@@ -44,12 +44,12 @@ public class MyThreadTask {
             new RequestionBuilder().build();
     }
 
-    public static void submitTask(MyThreadTask task){
+    public void submitTask(MyThreadTask task){
         taskQueue.offer(task);
         doTask();
     }
 
-    private static void doTask(){
+    private void doTask(){
         if (isDoingTask == true)return;
         isDoingTask = true;
         if (BTArequest.getOnlyEmbody() == null)

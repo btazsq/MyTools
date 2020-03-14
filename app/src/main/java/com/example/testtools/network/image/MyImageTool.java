@@ -38,6 +38,12 @@ public class MyImageTool {
 
     private boolean isDoingTask = false;
 
+    private MyThreadTask threadTask = new MyThreadTask(null);
+
+    protected MyImageTool(){
+        this.mode = NULL;
+    }
+
     protected MyImageTool(View view){
         this.view = view;
         this.mode = MODE_VIEW;
@@ -60,7 +66,7 @@ public class MyImageTool {
 
     public MyImageTool load(String url){
         isDoingTask = true;
-        MyThreadTask.submitTask(new MyThreadTask(()->{
+        threadTask.submitTask(new MyThreadTask(()->{
             //
             Bitmap bit = null;
             bit = getBitmap(url);
@@ -73,13 +79,14 @@ public class MyImageTool {
 
     public MyImageTool load(Bitmap bitmap){
         isDoingTask = true;
-        MyThreadTask.submitTask(new MyThreadTask(()->{
+        threadTask.submitTask(new MyThreadTask(()->{
             this.bitmap = bitmap;
         }));
         return this;
     }
 
     public MyImageTool into(ImageView imageView){
+        if (imageView == null)return this;
         if (preview != NULL) {
             Message mes = new Message();
             mes.what = SET_PREVIEW;
@@ -87,7 +94,7 @@ public class MyImageTool {
             mes.arg1 = preview;
             handler.sendMessage(mes);
         }
-        MyThreadTask.submitTask(new MyThreadTask(()->{
+        threadTask.submitTask(new MyThreadTask(()->{
             Message message = new Message();
             message.what = CHANGE_UI;
             message.obj = imageView;
@@ -97,8 +104,39 @@ public class MyImageTool {
         return this;
     }
 
+    public MyImageTool into(int id){
+        ImageView imageView = null;
+        switch (mode){
+            case NULL:return this;
+            case MODE_VIEW:{
+                imageView = (ImageView) this.view.findViewById(id);
+            }break;
+            case MODE_ACTIVITY:{
+                imageView = (ImageView) this.appCompatActivity.findViewById(id);
+            }break;
+            default:break;
+        }
+        if (imageView == null)return this;
+        if (preview != NULL) {
+            Message mes = new Message();
+            mes.what = SET_PREVIEW;
+            mes.obj = imageView;
+            mes.arg1 = preview;
+            handler.sendMessage(mes);
+        }
+        ImageView finalImageView = imageView;
+        threadTask.submitTask(new MyThreadTask(()->{
+            Message message = new Message();
+            message.what = CHANGE_UI;
+            message.obj = finalImageView;
+            handler.sendMessage(message);
+            isDoingTask = false;
+        }));
+        return this;
+    }
+
     public MyImageTool addBuffer(){
-        MyThreadTask.submitTask(new MyThreadTask(()->{
+        threadTask.submitTask(new MyThreadTask(()->{
             if (bitmap != null)
                 MyImage.bitmapList.add(bitmap);
         }));

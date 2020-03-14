@@ -28,6 +28,12 @@ public class MyImage {
 
     }
 
+    public static MyImageTool with(){
+        if (BTArequest.getOnlyEmbody() == null)
+            new RequestionBuilder().build();
+        return new MyImageTool();
+    }
+
     public static MyImageTool with(View view){
         if (BTArequest.getOnlyEmbody() == null)
             new RequestionBuilder().build();

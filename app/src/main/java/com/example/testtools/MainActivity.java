@@ -1,6 +1,7 @@
 package com.example.testtools;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -21,12 +22,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //测试
-        MyImage.with(this)
-                .setPreView(R.mipmap.ic_launcher)
-                .load("https://s2.ax1x.com/2020/02/08/1Wnh36.png")
-                .into(findViewById(R.id.image_test))
-                .addBuffer();
-        MyImage.getBitmapBuffer(0);
-        MyImage.delBitmapBuffer();
+        ViewPager viewPager = findViewById(R.id.test_viewpager);
+        viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
+
     }
 }
