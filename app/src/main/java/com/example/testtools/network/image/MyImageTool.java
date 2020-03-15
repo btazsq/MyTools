@@ -38,6 +38,8 @@ public class MyImageTool {
 
     private boolean isDoingTask = false;
 
+    private String mUrl = null;
+
     private MyThreadTask threadTask = new MyThreadTask(null);
 
     protected MyImageTool(){
@@ -65,6 +67,12 @@ public class MyImageTool {
     }
 
     public MyImageTool load(String url){
+        Bitmap bitmap1 = MyImage.getBitmapBuffer(url);
+        mUrl = url;
+        if (bitmap1 != null){
+            bitmap = bitmap1;
+            return this;
+        }
         isDoingTask = true;
         threadTask.submitTask(new MyThreadTask(()->{
             //
@@ -136,10 +144,12 @@ public class MyImageTool {
     }
 
     public MyImageTool addBuffer(){
-        threadTask.submitTask(new MyThreadTask(()->{
-            if (bitmap != null)
-                MyImage.bitmapList.add(bitmap);
-        }));
+        if (this.mUrl != null){
+            threadTask.submitTask(new MyThreadTask(()->{
+                if (bitmap != null)
+                    MyImage.hashMap.put(mUrl,bitmap);
+            }));
+        }
         return this;
     }
 

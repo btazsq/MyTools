@@ -1,6 +1,8 @@
 package com.example.testtools;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
@@ -22,8 +24,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //测试
-        ViewPager viewPager = findViewById(R.id.test_viewpager);
-        viewPager.setAdapter(new ViewPagerAdapter(getSupportFragmentManager()));
-
+        RecyclerView recyclerView = findViewById(R.id.recycle_test);
+        TestRecyclerAdpater adpater = new TestRecyclerAdpater();
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        recyclerView.setAdapter(adpater);
+        recyclerView.setLayoutManager(manager);
     }
 }
