@@ -1,4 +1,9 @@
 # 安卓工具类 #   
+```
+更新history文件夹   
+保存历史测试代码   
+（因为不重要，所以懒得回退版本）又不想舍弃
+```
 ## 网络请求工具类 ##  
 ```
 app\src\main\java\com\example\testtools\network\requestion内   

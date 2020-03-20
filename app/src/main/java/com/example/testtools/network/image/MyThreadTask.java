@@ -33,6 +33,10 @@ public class MyThreadTask {
         this.onRequestion = onRequestion;
     }
 
+    public MyThreadTask(){
+        this(()->{},null);
+    }
+
     public MyThreadTask(OnRequestion.DefineAction defineAction){
         this(defineAction,null);
     }

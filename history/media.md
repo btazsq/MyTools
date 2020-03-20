@@ -1,17 +1,4 @@
-package com.example.testtools;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.ComponentName;
-import android.content.Intent;
-import android.content.ServiceConnection;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.view.View;
-import android.widget.Button;
-
-import com.example.testtools.local.media.MediaService;
-
+## MediaPlay的主活动代码
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity**********";
 
