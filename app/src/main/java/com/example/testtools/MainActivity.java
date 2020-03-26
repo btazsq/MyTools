@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.testtools.local.media.MediaService;
+import com.example.testtools.local.struct.mvp.MVPActivity;
+import com.example.testtools.local.struct.mvp.MVPContact;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity**********";
@@ -38,15 +40,19 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        //测试
+    private void MediaInit(){
         Button button = findViewById(R.id.change);
         button.setOnClickListener(clickListener);
         bindService(new Intent(this,MediaService.class),connection,BIND_AUTO_CREATE);
         mediaService = new MediaService(R.raw.kksk);
         startService(new Intent(MainActivity.this,MediaService.class));
+    }
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        //测试
+        startActivity(new Intent(MainActivity.this, MVPActivity.class));
     }
 }
