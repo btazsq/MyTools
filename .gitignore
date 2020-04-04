@@ -12,3 +12,5 @@
 /captures
 .externalNativeBuild
 .cxx
+/app/src/main/res/raw/kksk.mp3
+/app/src/main/java/com/example/testtools/local/media
