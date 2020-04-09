@@ -37,7 +37,7 @@ public class MediaService extends Service {
     AudioManager manager = null;
 
     public MediaService(){
-        this.raw = R.raw.kksk;
+        //this.raw = R.raw.kksk;
     }
 
     public MediaService(int raw){
@@ -127,26 +127,26 @@ public class MediaService extends Service {
 
     }
 
-    private void test(){
-        threadTask.submitTask(new MyThreadTask(()->{
-            this.raw = R.raw.kksk;
-            manager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-            int maxVolume = manager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
-            Log.d("******", "e.toString()");
-            start();
-            for(int i=0;i<700;i++){
-                try {
-                    Message message = new Message();
-                    message.arg1 = maxVolume;
-                    Thread.sleep(100L);
-                    handler.sendMessage(message);
-                } catch (Exception e) {
-                    Log.d("******", e.toString());
-                }
-            }
-            mediaPlayer.stop();
-            stopSelf();
-        }));
-    }//送给最好的ta
+//    private void test(){
+//        threadTask.submitTask(new MyThreadTask(()->{
+//            this.raw = R.raw.kksk;
+//            manager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+//            int maxVolume = manager.getStreamMaxVolume(AudioManager.STREAM_MUSIC);
+//            Log.d("******", "e.toString()");
+//            start();
+//            for(int i=0;i<700;i++){
+//                try {
+//                    Message message = new Message();
+//                    message.arg1 = maxVolume;
+//                    Thread.sleep(100L);
+//                    handler.sendMessage(message);
+//                } catch (Exception e) {
+//                    Log.d("******", e.toString());
+//                }
+//            }
+//            mediaPlayer.stop();
+//            stopSelf();
+//        }));
+//    }//送给最好的ta
 
 }

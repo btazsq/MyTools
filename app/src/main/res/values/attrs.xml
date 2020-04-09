@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="itemColor" format="color" />
+
+    <declare-styleable name="RectItem">
+        <attr name="board" format="float" />
+        <attr name="high" format="float" />
+        <attr name="itemColor" />
+    </declare-styleable>
+
+    <declare-styleable name="FanItem">
+        <attr name="oneAn" format="float" />
+        <attr name="twoAn" format="float" />
+        <attr name="itemColor" />
+    </declare-styleable>
+
+</resources>
